@@ -1,11 +1,11 @@
 import React from "react";
+import "./header.css"
 import SearchIcon from "@mui/icons-material/Search";
 const Header = () => {
   return (
     <div className="header">
-      <h1>This is header</h1>
       <div className="header__left">
-        <img src="" alt="logo" />
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="logo" />
         <div className="header_search">
           <SearchIcon />
           <input type="text" placeholder="Search..." />
