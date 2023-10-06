@@ -1,11 +1,15 @@
 .header{
     display: flex;
-    margin: 5px ;
+    justify-content: space-evenly;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-bottom: 0.1px solid lightgray;
+    width: 100%;
 }
-.header__left{
+.header_left{
     display: flex;
 }
-.header__left >img{
+.header_left >img{
     object-fit: contain;
     height: 40px;
     margin-right:10px;
@@ -26,5 +30,9 @@
     border: none;
     background:none;
     height: 90%;
-    font-size: 0.9rem;
+    font-size: 1rem;
+}
+.header_right{
+    display: flex;
+    flex-wrap: nowrap;
 }
