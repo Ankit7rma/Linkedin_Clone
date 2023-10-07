@@ -9,6 +9,8 @@ function App() {
       <Header/>
       <div className='app_body'>
       <Sidebar/>
+      {/* Body  */} 
+      {/* news  */}
       </div>
 
     </div>
