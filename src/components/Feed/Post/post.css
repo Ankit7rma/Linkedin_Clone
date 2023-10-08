@@ -1,10 +1,10 @@
 .post{
     background-color: white;
     padding-left: 10px;
+    padding-right: 10px;
     padding-top: 5px;
     margin-bottom:10px;
     border-radius: 10px;
-
 }
 .post_header{
     display: grid;
@@ -42,4 +42,8 @@
     border: none; 
     font-size:18px;
     background-color: white;
+}
+.post_buttons{
+    display: flex;
+    padding-bottom: 10px;
 }

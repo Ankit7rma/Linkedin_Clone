@@ -9,4 +9,4 @@ const InputOptions = ({Icon,title,color}) => {
   )
 }
 
-export default InputOptions
+export default InputOptions;
