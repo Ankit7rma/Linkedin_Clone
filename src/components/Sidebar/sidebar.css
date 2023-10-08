@@ -9,6 +9,7 @@ height: fit-content;
 }
 .sidebar_avatar{
     margin-bottom: 10px;
+    opacity: 0.8;
 }
 .sidebar_top{
     display: flex;
