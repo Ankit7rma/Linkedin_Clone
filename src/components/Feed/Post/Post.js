@@ -7,10 +7,10 @@ import SendIcon from '@mui/icons-material/Send';
 import ShareIcon from '@mui/icons-material/Share';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import InputOptions from "../InputOptions";
-const Post = ({ name, description, avatar, message }) => {
+const Post = ({ name, description, avatar, message,likes,comments,shares }) => {
   const [follow, setFollow] = useState(true);
   const [isPopupVisible, setPopupVisible] = useState(false);
-
+  
   const togglePopup = () => {
     setPopupVisible(!isPopupVisible);
   };
@@ -31,6 +31,17 @@ const Post = ({ name, description, avatar, message }) => {
       <div className="post_body">
        <p>{message}</p> 
       </div>
+      <div className="post_reach">
+      <div className='likes'>
+            Likes: {likes}
+          </div>
+          <div className="comments">
+            Comments: {comments}
+          </div>
+          <div className="shares">
+            Shares: {shares}
+          </div>
+        </div>
       <div className="post_buttons">
       <div className="popup-container">
       <button className="popup-button"onClick={togglePopup} style={{border:"none",background:"white"}}>
