@@ -32,15 +32,15 @@ const Post = ({ name, description, avatar, message,likes,comments,shares }) => {
        <p>{message}</p> 
       </div>
       <div className="post_reach">
-      <div className='likes'>
+      {likes && <div className='likes'>
             Likes: {likes}
-          </div>
-          <div className="comments">
+          </div>}
+          {comments&& <div className="comments">
             Comments: {comments}
-          </div>
-          <div className="shares">
+          </div>}
+          {shares && <div className="shares">
             Shares: {shares}
-          </div>
+          </div>}
         </div>
       <div className="post_buttons">
       <div className="popup-container">

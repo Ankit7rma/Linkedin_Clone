@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CreateIcon from '@mui/icons-material/Create';
 import "./feed.css"
 import InputOptions from './InputOptions';
@@ -8,20 +8,43 @@ import EventNoteIcon from '@mui/icons-material/EventNote';
 import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 import Post from './Post/Post';
 import { linkedInPosts } from './Post/PostArray';
+import {db} from "../firebase/firebase"
 
 const Feed = () => {
   const [posts,setPosts] = useState(linkedInPosts)
-  const handleClick=(e)=>{
-    e.preventDefault()
-  }
+  const [input ,setInput] = useState('')
+  // useEffect(()=>{
+  //   db.collection('posts').onSnapshot((snapshot) => {
+  //     setPosts(
+  //       snapshot.docs.map((doc) => ({
+  //         id: doc.id,
+  //         data: doc.data(),
+  //       }))
+  //     );
+  //   });
+  // }, []);
+  // const sendPost=(e)=>{
+  //   e.preventDefault()
+  
+  //   db.collection('posts').add({
+  //     name: "Ankit Sharma",
+  //     description: "Frontend Developer",
+  //     message: "Hello all, this is LinkedIn Clone in progress",
+  //   });
+  
+  // }
   return (
     <div className='feed'>
     <div className='feed_inputContainer'>
         <div className='feedInput'>
             <CreateIcon/>
             <form>
-                <input type='text'></input>
-                <button type='submit' onClick={handleClick}>Send</button>
+                <input value ={input} onChange={(e)=>(setInput(e.target.va
+
+                ))} type='text'></input>
+                <button type='submit' 
+                // onClick={sendPost}
+                >Send</button>
             </form>
         </div>
         <div className='feed_inputOptions'>
@@ -32,16 +55,17 @@ const Feed = () => {
         </div>
     </div>
 
-     
     <div className="post">
-    {posts.map((post)=>(
+    {/* {posts.map((post)=>(
       <div className="post_id">
       <Post id={post.id}  name={post.author} description={post.title} message={post.content} likes= {post.likes} comments={post.comments} shares={post.shares}/>
       
-      </div>))}
-      {/* <Post name="Ankit Sharma" description="Frontend Developer" message="Hello all" avatar='https://lh3.googleusercontent.com/ogw/AKPQZvyGi0i3iu1xdM59zqDA1aiX9Ce0hn2A2OczqPTESw=s32-c-mo'/> */}
+      </div>))} */}
+      <Post name="Ankit Sharma" description="Frontend Developer" message="Hello all" avatar='https://lh3.googleusercontent.com/ogw/AKPQZvyGi0i3iu1xdM59zqDA1aiX9Ce0hn2A2OczqPTESw=s32-c-mo'/>
     
     </div>
+     
+   
     </div>
   )
 }
