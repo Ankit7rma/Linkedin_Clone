@@ -1,3 +1,4 @@
+//Array of posts used in starting 
 export const linkedInPosts = [
     {
       id: 1,
@@ -33,4 +34,6 @@ export const linkedInPosts = [
   ];
   
   // You can use linkedInPosts array in your JavaScript code for various purposes.
+  //post used to show above array
+//  <Post name="Ankit Sharma" description="Frontend Developer" message="Hello all" avatar='https://lh3.googleusercontent.com/ogw/AKPQZvyGi0i3iu1xdM59zqDA1aiX9Ce0hn2A2OczqPTESw=s32-c-mo'/>
   

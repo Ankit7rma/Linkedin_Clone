@@ -7,48 +7,40 @@ import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 import Post from './Post/Post';
-import { linkedInPosts } from './Post/PostArray';
 import {db} from "../firebase/firebase"
-import { collection, addDoc ,getDocs,serverTimestamp } from "firebase/firestore"; 
+import { collection, addDoc,serverTimestamp, onSnapshot } from "firebase/firestore"; 
 
 
 const Feed = () => {
-  const [posts,setPosts] = useState(linkedInPosts)
+  const [posts,setPosts] = useState([])
   const [input ,setInput] = useState('')
-  useEffect(()=>{
-    const fetchPosts = async () => {
-      try {
-        const postCollection = collection(db, 'posts');
-        const querySnapshot = await getDocs(postCollection);
+  
+  useEffect(() => {
+    const postCollection = collection(db, 'posts');
 
-        const updatedPosts = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        }));
+    const unsubscribe = onSnapshot(postCollection, (querySnapshot) => {
+      const updatedPosts = querySnapshot.docs?.map((doc) => ({
+        id: doc.id,
+        data: doc.data(),
+      }));
 
-        setPosts(updatedPosts);
-      } catch (error) {
-        // Handle any errors here
-        console.error('Error fetching posts: ', error);
-      }
-    };
+      setPosts(updatedPosts);
+    });
 
-    fetchPosts();
-  }, []);
-  const sendPost = async (e) => {
+    // Clean up the listener when the component unmounts
+    return () => unsubscribe();
+  }, [posts]); 
+  const sendPost =(e) => {
     e.preventDefault()
-    try {
       const postCollection = collection(db, 'posts');
       const timestamp = serverTimestamp(); // Generate a server-side timestamp
-      await addDoc(postCollection, { 
-        name: "Ankit Sharma",
+      addDoc(postCollection, { 
+      name: "Ankit Sharma",
       description: "Frontend Developer",
       message:input, 
-      timestamp });
-    } catch (error) {
-      // Handle any errors here
-      console.error('Error adding a new post: ', error);
-    }
+      photoUrl:"https://lh3.googleusercontent.com/ogw/AKPQZvyGi0i3iu1xdM59zqDA1aiX9Ce0hn2A2OczqPTESw=s32-c-mo",
+      timestamp });    
+    setInput("");
   };
 
   return (
@@ -77,8 +69,15 @@ const Feed = () => {
       <Post id={post.id}  name={post.author} description={post.title} message={post.content} likes= {post.likes} comments={post.comments} shares={post.shares}/>
       
       </div>))} */}
-      <Post name="Ankit Sharma" description="Frontend Developer" message="Hello all" avatar='https://lh3.googleusercontent.com/ogw/AKPQZvyGi0i3iu1xdM59zqDA1aiX9Ce0hn2A2OczqPTESw=s32-c-mo'/>
-    
+      {posts?.map(({id,data:{name,description,message,photoUrl}})=>(
+        <Post key={id}
+              name={name}
+              description={description}
+              message={message}
+              avatar={photoUrl}
+        />
+      ))}
+     
     </div>
      
    
