@@ -8,7 +8,7 @@ import EventNoteIcon from '@mui/icons-material/EventNote';
 import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 import Post from './Post/Post';
 import {db} from "../firebase/firebase"
-import { collection, addDoc,serverTimestamp, onSnapshot } from "firebase/firestore"; 
+import { collection, addDoc,serverTimestamp, onSnapshot, orderBy, query } from "firebase/firestore"; 
 
 
 const Feed = () => {
@@ -17,9 +17,10 @@ const Feed = () => {
   
   useEffect(() => {
     const postCollection = collection(db, 'posts');
+    const q = query(postCollection, orderBy('timestamp', 'desc'));
 
-    const unsubscribe = onSnapshot(postCollection, (querySnapshot) => {
-      const updatedPosts = querySnapshot.docs?.map((doc) => ({
+    const subscribe = onSnapshot(q, (querySnapshot) => {
+      const updatedPosts = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         data: doc.data(),
       }));
@@ -28,7 +29,7 @@ const Feed = () => {
     });
 
     // Clean up the listener when the component unmounts
-    return () => unsubscribe();
+    return () => subscribe();
   }, [posts]); 
   const sendPost =(e) => {
     e.preventDefault()
