@@ -9,30 +9,38 @@ import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 import Post from './Post/Post';
 import { linkedInPosts } from './Post/PostArray';
 import {db} from "../firebase/firebase"
+import { collection, addDoc ,getDocs} from "firebase/firestore"; 
+
 
 const Feed = () => {
   const [posts,setPosts] = useState(linkedInPosts)
   const [input ,setInput] = useState('')
-  // useEffect(()=>{
-  //   db.collection('posts').onSnapshot((snapshot) => {
-  //     setPosts(
-  //       snapshot.docs.map((doc) => ({
-  //         id: doc.id,
-  //         data: doc.data(),
-  //       }))
-  //     );
-  //   });
-  // }, []);
-  // const sendPost=(e)=>{
-  //   e.preventDefault()
+//   useEffect(()=>{
+//     const postCollection = getDocs(collection(db, "posts"));
+//     postCollection.onSnapshot((snapshot) => {
+//       setPosts(
+//         snapshot.docs.map((doc) => ({
+//           id: doc.id,
+//           data: doc.data(),
+//         }))
+//       );
+//     });
+//   //   const querySnapshot = await getDocs(collection(db, "users"));
+// // querySnapshot.forEach((doc) => {
+// //   console.log(`${doc.id} => ${doc.data()}`);
+// // });
+
+ 
+//   }, []);
+  const sendPost=(e)=>{
+    e.preventDefault()
   
-  //   db.collection('posts').add({
-  //     name: "Ankit Sharma",
-  //     description: "Frontend Developer",
-  //     message: "Hello all, this is LinkedIn Clone in progress",
-  //   });
-  
-  // }
+     const docRef =addDoc(collection(db, "posts"),{
+      name: "Ankit Sharma",
+      description: "Frontend Developer",
+      message: "Hello all, this is LinkedIn Clone in progress",
+    });  
+  }
   return (
     <div className='feed'>
     <div className='feed_inputContainer'>
@@ -43,7 +51,7 @@ const Feed = () => {
 
                 ))} type='text'></input>
                 <button type='submit' 
-                // onClick={sendPost}
+                onClick={sendPost}
                 >Send</button>
             </form>
         </div>
@@ -70,4 +78,4 @@ const Feed = () => {
   )
 }
 
-export default Feed
+export default Feed;
