@@ -4,7 +4,7 @@ import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import Feed from './components/Feed/Feed';
 import { useSelector } from 'react-redux';
-import Login from './components/Login';
+import Login from './components/Login/Login';
 import { selectUser } from './features/userSlice';
 
 function App() {

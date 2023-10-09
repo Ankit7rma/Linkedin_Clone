@@ -30,7 +30,8 @@ const Feed = () => {
 
     // Clean up the listener when the component unmounts
     return () => subscribe();
-  }, [posts]); 
+  // }, [posts]); 
+  }, []); 
   const sendPost =(e) => {
     e.preventDefault()
       const postCollection = collection(db, 'posts');
