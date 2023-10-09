@@ -9,47 +9,55 @@ import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 import Post from './Post/Post';
 import { linkedInPosts } from './Post/PostArray';
 import {db} from "../firebase/firebase"
-import { collection, addDoc ,getDocs} from "firebase/firestore"; 
+import { collection, addDoc ,getDocs,serverTimestamp } from "firebase/firestore"; 
 
 
 const Feed = () => {
   const [posts,setPosts] = useState(linkedInPosts)
   const [input ,setInput] = useState('')
-//   useEffect(()=>{
-//     const postCollection = getDocs(collection(db, "posts"));
-//     postCollection.onSnapshot((snapshot) => {
-//       setPosts(
-//         snapshot.docs.map((doc) => ({
-//           id: doc.id,
-//           data: doc.data(),
-//         }))
-//       );
-//     });
-//   //   const querySnapshot = await getDocs(collection(db, "users"));
-// // querySnapshot.forEach((doc) => {
-// //   console.log(`${doc.id} => ${doc.data()}`);
-// // });
+  useEffect(()=>{
+    const fetchPosts = async () => {
+      try {
+        const postCollection = collection(db, 'posts');
+        const querySnapshot = await getDocs(postCollection);
 
- 
-//   }, []);
-  const sendPost=(e)=>{
+        const updatedPosts = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }));
+
+        setPosts(updatedPosts);
+      } catch (error) {
+        // Handle any errors here
+        console.error('Error fetching posts: ', error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+  const sendPost = async (e) => {
     e.preventDefault()
-  
-     const docRef =addDoc(collection(db, "posts"),{
-      name: "Ankit Sharma",
+    try {
+      const postCollection = collection(db, 'posts');
+      const timestamp = serverTimestamp(); // Generate a server-side timestamp
+      await addDoc(postCollection, { 
+        name: "Ankit Sharma",
       description: "Frontend Developer",
-      message: "Hello all, this is LinkedIn Clone in progress",
-    });  
-  }
+      message:input, 
+      timestamp });
+    } catch (error) {
+      // Handle any errors here
+      console.error('Error adding a new post: ', error);
+    }
+  };
+
   return (
     <div className='feed'>
     <div className='feed_inputContainer'>
         <div className='feedInput'>
             <CreateIcon/>
             <form>
-                <input value ={input} onChange={(e)=>(setInput(e.target.va
-
-                ))} type='text'></input>
+                <input value ={input} onChange={(e)=>(setInput(e.target.value))} type='text'></input>
                 <button type='submit' 
                 onClick={sendPost}
                 >Send</button>
