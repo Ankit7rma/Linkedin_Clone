@@ -29,10 +29,17 @@
     border-radius: 10px;
 }
 .login>form>button{
-    width:490px;
+    width:150px;
     height: 30px;
     font-size: 20px;
     padding-left:20px ;
     margin-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
+    background-color: lightblue;
+}
+.register{
+    cursor: pointer;
+}
+.form >h2{
+    margin: 10px 0;
 }

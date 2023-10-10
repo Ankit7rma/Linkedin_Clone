@@ -7,10 +7,10 @@ const userSlice = createSlice({
     },
     reducers:{
         login:(state,action)=>{
-            state.user.value = action.payload;
+            state.user = action.payload;
         },
         logOut:(state)=>{
-            state.user.value=null
+            state.user=null
         }
     }
 })

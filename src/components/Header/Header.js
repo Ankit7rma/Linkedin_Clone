@@ -9,10 +9,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ChatIcon from '@mui/icons-material/Chat';
 
 const Header = () => {
+ 
   return (
     <div className="header">
       <div className="header_left">
-        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="logo" />
+        {/* unlock<img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="logo" /> */}
         <div className="header_search">
           <SearchIcon />
           <input type="text" placeholder="Search..." />
@@ -24,7 +25,12 @@ const Header = () => {
         <HeaderOptions Icon={BusinessCenterIcon} title={'Jobs'}/>
         <HeaderOptions Icon={ChatIcon} title={'Messaging'}/>
         <HeaderOptions Icon={NotificationsIcon} title={'Notifications'}/>
-        <HeaderOptions avatar="https://lh3.googleusercontent.com/ogw/AKPQZvyGi0i3iu1xdM59zqDA1aiX9Ce0hn2A2OczqPTESw=s32-c-mo" title={'me'}/>
+        <HeaderOptions 
+        avatar=" "
+        // "https://lh3.googleusercontent.com/ogw/AKPQZvyGi0i3iu1xdM59zqDA1aiX9Ce0hn2A2OczqPTESw=s32-c-mo"
+         title={'Me'}
+          
+         />
       </div>
     </div>
   );

@@ -71,14 +71,14 @@ const Feed = () => {
       <Post id={post.id}  name={post.author} description={post.title} message={post.content} likes= {post.likes} comments={post.comments} shares={post.shares}/>
       
       </div>))} */}
-      {posts?.map(({id,data:{name,description,message,photoUrl}})=>(
+      {/* unlock{posts?.map(({id,data:{name,description,message,photoUrl}})=>(
         <Post key={id}
               name={name}
               description={description}
               message={message}
               avatar={photoUrl}
         />
-      ))}
+      ))} */}
      
     </div>
      
