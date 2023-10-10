@@ -2,11 +2,12 @@ import React from "react";
 import "./headerOptions.css"
 import { Avatar } from "@mui/material";
 import { getAuth } from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { logOut } from "../../features/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut, selectUser } from "../../features/userSlice";
 
 
 const HeaderOptions = ({avatar, Icon, title ,onClick}) => {
+  const user = useSelector(selectUser)
   const auth = getAuth()
   const dispatch = useDispatch()
   const logOutApp=()=>{
@@ -16,7 +17,7 @@ const HeaderOptions = ({avatar, Icon, title ,onClick}) => {
   return (
     <div onClick={onClick} className="headerOptions">
       {Icon && <Icon className="headerOptions_icon" />}
-      {avatar && <Avatar alt='avatar' src={avatar} onClick={logOutApp} className="headerOptions_icon"/>}
+      {avatar && <Avatar alt='avatar' src={user.photoUrl} onClick={logOutApp} className="headerOptions_icon">{user?.email[0]}</Avatar>}
       <h3 className="headerOptions_title">{title}</h3>
     </div>
   );
