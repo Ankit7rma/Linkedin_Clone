@@ -9,9 +9,12 @@ import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 import Post from './Post/Post';
 import {db} from "../firebase/firebase"
 import { collection, addDoc,serverTimestamp, onSnapshot, orderBy, query } from "firebase/firestore"; 
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
 
 
 const Feed = () => {
+  const user = useSelector(selectUser)
   const [posts,setPosts] = useState([])
   const [input ,setInput] = useState('')
   
@@ -71,14 +74,14 @@ const Feed = () => {
       <Post id={post.id}  name={post.author} description={post.title} message={post.content} likes= {post.likes} comments={post.comments} shares={post.shares}/>
       
       </div>))} */}
-      {/* unlock{posts?.map(({id,data:{name,description,message,photoUrl}})=>(
+      {posts?.map(({id,data:{name,description,message,photoUrl}})=>(
         <Post key={id}
               name={name}
               description={description}
               message={message}
-              avatar={photoUrl}
+              avatar={true}
         />
-      ))} */}
+      ))}
      
     </div>
      

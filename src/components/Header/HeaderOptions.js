@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./headerOptions.css"
 import { Avatar } from "@mui/material";
 import { getAuth } from "firebase/auth";
@@ -17,7 +17,7 @@ const HeaderOptions = ({avatar, Icon, title ,onClick}) => {
   return (
     <div onClick={onClick} className="headerOptions">
       {Icon && <Icon className="headerOptions_icon" />}
-      {avatar && <Avatar alt='avatar' src={user.photoUrl} onClick={logOutApp} className="headerOptions_icon">{user?.email[0]}</Avatar>}
+      {avatar && <Avatar alt='avatar' onClick={()=>{logOutApp()}} className="headerOptions_icon">{user?.email[0]}</Avatar>}
       <h3 className="headerOptions_title">{title}</h3>
     </div>
   );

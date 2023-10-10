@@ -7,10 +7,13 @@ import SendIcon from '@mui/icons-material/Send';
 import ShareIcon from '@mui/icons-material/Share';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import InputOptions from "../InputOptions";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../features/userSlice";
 const Post = ({ name, description, avatar, message,likes,comments,shares }) => {
   const [follow, setFollow] = useState(true);
   const [isPopupVisible, setPopupVisible] = useState(false);
-  
+  const user = useSelector(selectUser);
+
   const togglePopup = () => {
     setPopupVisible(!isPopupVisible);
   };
@@ -18,10 +21,10 @@ const Post = ({ name, description, avatar, message,likes,comments,shares }) => {
   return (
     <div className="post">
       <div className="post_header">
-        <Avatar src={avatar} alt="user"/>
+       {avatar&& <Avatar  alt="user">{user.email[0]}</Avatar>}
         <div className="post_info">
           <div className="user_nameInfo">
-            <h2>{name}</h2>
+            <h2>{user.displayName}</h2>
             <p>{follow ? "":"Following"}</p>
           </div>
           <p>{description}</p>
