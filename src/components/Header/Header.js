@@ -7,11 +7,8 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ChatIcon from '@mui/icons-material/Chat';
-import { useSelector } from "react-redux";
-import { selectUser } from "../../features/userSlice";
 
 const Header = () => {
-  const user = useSelector(selectUser)
  
   return (
     <div className="header">

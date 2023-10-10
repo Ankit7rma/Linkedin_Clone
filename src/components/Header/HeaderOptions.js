@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./headerOptions.css"
 import { Avatar } from "@mui/material";
 import { getAuth } from "firebase/auth";

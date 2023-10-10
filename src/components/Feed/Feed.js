@@ -9,12 +9,9 @@ import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 import Post from './Post/Post';
 import {db} from "../firebase/firebase"
 import { collection, addDoc,serverTimestamp, onSnapshot, orderBy, query } from "firebase/firestore"; 
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../features/userSlice';
 
 
 const Feed = () => {
-  const user = useSelector(selectUser)
   const [posts,setPosts] = useState([])
   const [input ,setInput] = useState('')
   

@@ -74,7 +74,7 @@ const Login = () => {
       {/* unlock <img src='https://content.linkedin.com/content/dam/brand/site/img/logo/do/do-trademark-legible.png' alt="logo" /> */}
       <form onSubmit={(e) => e.preventDefault()} className="form">
         <h2>{isSignInForm ? "Sign In" : "Sign Up"}</h2>
-        {!isSignInForm && (
+        { (
           <input
             value={name}
             type="text"
