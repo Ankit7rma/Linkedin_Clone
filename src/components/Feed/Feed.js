@@ -9,7 +9,7 @@ import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 import Post from './Post/Post';
 import {db} from "../firebase/firebase"
 import { collection, addDoc,serverTimestamp, onSnapshot, orderBy, query } from "firebase/firestore"; 
-
+import FlipMove from "react-flip-move"
 
 const Feed = () => {
   const [posts,setPosts] = useState([])
@@ -71,6 +71,7 @@ const Feed = () => {
       <Post id={post.id}  name={post.author} description={post.title} message={post.content} likes= {post.likes} comments={post.comments} shares={post.shares}/>
       
       </div>))} */}
+      <FlipMove>
       {posts?.map(({id,data:{name,description,message,photoUrl}})=>(
         <Post key={id}
               name={name}
@@ -79,6 +80,7 @@ const Feed = () => {
               avatar={true}
         />
       ))}
+      </FlipMove>
      
     </div>
      

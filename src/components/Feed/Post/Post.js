@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import { Avatar } from "@mui/material";
 import "./post.css"
 import "./popup.css"
@@ -9,7 +9,8 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import InputOptions from "../InputOptions";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../features/userSlice";
-const Post = ({ name, description, avatar, message,likes,comments,shares }) => {
+
+const Post =forwardRef( ({ name, description, avatar, message,likes,comments,shares },ref )=> {
   const [follow, setFollow] = useState(true);
   const [isPopupVisible, setPopupVisible] = useState(false);
   const user = useSelector(selectUser);
@@ -19,7 +20,7 @@ const Post = ({ name, description, avatar, message,likes,comments,shares }) => {
   };
 
   return (
-    <div className="post">
+    <div ref ={ref} className="post">
       <div className="post_header">
        {avatar&& <Avatar  alt="user">{user.email[0]}</Avatar>}
         <div className="post_info">
@@ -64,6 +65,6 @@ const Post = ({ name, description, avatar, message,likes,comments,shares }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Post;
