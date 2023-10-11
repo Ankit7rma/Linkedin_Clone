@@ -1,0 +1,35 @@
+.widgets{
+    flex:0.2;
+    position: sticky;
+    top: 80px;
+    background-color: white;
+    height: fit-content;
+    border-radius: 10px;
+    border: 0.8px solid lightgray;
+}
+.widgets_header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.widgets_header>h2{
+    font-size: 20px;
+    font-weight: 400;
+    margin-right: 10px;
+}
+.newsArticle{
+    display: flex;
+    padding: 10px;
+    cursor: pointer;
+}
+.newsArticle:hover{
+    background-color: whitesmoke;
+}
+.news_left{
+    color: #0177b7;
+    margin-right: 5px;
+}
+.news_left > .MuiSvgIcon-root{
+    font-size: 12px;
+}

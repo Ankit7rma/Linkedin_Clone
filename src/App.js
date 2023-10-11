@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Login from './components/Login/Login';
 import { logOut, login, selectUser } from './features/userSlice';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import Widgets from './components/Widgets/Widgets';
 
 function App() {
   const user= useSelector(selectUser)
@@ -25,7 +26,7 @@ function App() {
     dispatch(logOut())
   }
 });
-  },[])
+  },[ ])
   return (
     <div className="app">
       <Header/>
@@ -33,7 +34,7 @@ function App() {
       <div className='app_body'>
       <Sidebar/>
       <Feed/> 
-      {/* news  */}
+      <Widgets/>
       </div>
       }
       
